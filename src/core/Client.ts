@@ -14,7 +14,7 @@ export default class Client {
 
     static void() {
 
-return new Client('' , 0 )
+return new Client('' , 0)
 
     }
 

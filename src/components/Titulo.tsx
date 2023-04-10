@@ -4,7 +4,7 @@ export default function Titulo(props) {
 
         <div className="flex flex-col justify-center">
 
-            <h1 className="pl-4 text-2xl">
+            <h1 className="p-4 text-2xl">
                 {props.chidren}
             </h1>
 

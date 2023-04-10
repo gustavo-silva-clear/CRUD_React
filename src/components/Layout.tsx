@@ -15,7 +15,7 @@ export default function Layout(props: LayoutProps) {
         flex flex-col w-2/3
         bg-white 
         text-gray-800
-        text-5xl
+        text-3xl
         rounded-md
         
         `}>
