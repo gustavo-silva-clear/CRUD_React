@@ -7,6 +7,9 @@ import { useState } from "react";
 
 export default function Home() {
 
+  const [visivel, setVisivel] = useState<'tabela' | 'form'>('tabela')
+  const [client , setClient] = useState<Client>(Client.void())
+
   const clients = [
 
     new Client('Gustavo', 20, '1'),
@@ -21,17 +24,23 @@ export default function Home() {
 
   function clientSelect(client: Client) {
 
-    console.log(client.nome)
+    setClient(client)
+    setVisivel('form')
 
   }
 
+  function newClient(){
+
+    setClient(Client.void())
+    setVisivel('form')
+
+  }
   function saveClient(client: Client) {
 
     console.log(client)
+    setVisivel('tabela')
 
   }
-
-  const [visivel, setVisivel] = useState<'tabela' | 'form'>('tabela')
 
   return (
     <div className={`
@@ -49,7 +58,7 @@ export default function Home() {
           <>
             <div className="flex justify-end">
 
-              <Button cor="green" className="mb-4" onClick={() => setVisivel('form')}>Novo Cliente</Button>
+              <Button cor="green" className="mb-4" onClick={newClient}>Novo Cliente</Button>
 
             </div>
 
@@ -60,7 +69,7 @@ export default function Home() {
 
         ) : (
 
-          <Form client={clients[4]} clientChanged={saveClient} cancel={() => setVisivel('tabela')}></Form>
+          <Form client={client} clientChanged={saveClient} cancel={() => setVisivel('tabela')}></Form>
 
         )}
       </Layout>
