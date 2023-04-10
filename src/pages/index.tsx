@@ -2,6 +2,7 @@ import Layout from "../components/Layout";
 import Table from "../components/Table";
 import Client from "../core/Client";
 import Button from "../components/Button";
+import Form from "../components/Form";
 
 export default function Home() {
 
@@ -44,7 +45,9 @@ export default function Home() {
 
 
 
-        <Table clients={clients} clientSelect={clientSelect}></Table>
+       {/*<Table clients={clients} clientSelect={clientSelect}></Table>*/} 
+
+       <Form client = {clients[4]}></Form>
 
       </Layout>
     </div>

@@ -13,7 +13,7 @@ export default function Button(props: ButtonProps){
 return (
     <button className={`
     
-    bg-gradient-to-r from-${cor}-200 to-${cor}-700 text-white px-4 p-2 rounded-md
+    bg-gradient-to-r from-${props.cor}-400 to-${props.cor}-700 text-white px-4 p-2 rounded-md
     ${props.className}
     `}>
         {props.children}
