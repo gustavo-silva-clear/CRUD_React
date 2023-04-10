@@ -1,6 +1,7 @@
 import Layout from "../components/Layout";
 import Table from "../components/Table";
 import Client from "../core/Client";
+import Button from "../components/Button";
 
 export default function Home() {
 
@@ -16,6 +17,12 @@ export default function Home() {
 
   ]
 
+  function clientSelect(client: Client) {
+
+    console.log(client.nome)
+
+  }
+
   return (
     <div className={`
     flex 
@@ -28,7 +35,16 @@ export default function Home() {
 
       <Layout titulo="Cadastro simples">
 
-        <Table clients={clients}></Table>
+
+        <div className="flex justify-end">
+
+          <Button cor="green" className="mb-4">Novo Cliente</Button>
+        
+         </div>
+
+
+
+        <Table clients={clients} clientSelect={clientSelect}></Table>
 
       </Layout>
     </div>
