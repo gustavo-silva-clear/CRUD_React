@@ -15,7 +15,7 @@ export default class CollectionClient implements ClientRepository {
             }
 
         },
-        fromFirestore(snapshot: firebase.firestore.QueryDocumentSnap, options: firebase.firestore.SnapshotOptions): Client {
+        fromFirestore(snapshot: firebase.firestore.QueryDocumentSnapshot, options: firebase.firestore.SnapshotOptions): Client {
             const dados = snapshot.data(options)
             return new Client(dados.nome, dados.idade, snapshot.id)
         }
@@ -46,7 +46,7 @@ export default class CollectionClient implements ClientRepository {
     async AllUsers(): Promise<Client[]> {
 
         const query = await this.colecao().get()
-        return query.docs.maps(doc => doc.data()) ?? []
+        return query.docs.map(doc => doc.data()) ?? []
 
     }
 

@@ -9,17 +9,23 @@ import CollectionClient from "../backend/db/CollectionClient";
 
 export default function Home() {
 
-  const [client , setClient] = useState<Client>(Client.void())
-  const [clients , setClients] = useState<Client[]>([])
+  const [client, setClient] = useState<Client>(Client.void())
+  const [clients, setClients] = useState<Client[]>([])
   const [visivel, setVisivel] = useState<'tabela' | 'form'>('tabela')
 
   const repo: ClientRepository = new CollectionClient()
 
-useEffect(() => {
+  useEffect(obterTodos, [])
 
-repo.AllUsers().then(setClients)
+  function obterTodos() {
 
-} , [])
+    repo.AllUsers().then(clients => {
+
+      setClients(clients)
+      setVisivel('tabela')
+
+    })
+  }
 
   function clientSelect(client: Client) {
 
@@ -28,17 +34,24 @@ repo.AllUsers().then(setClients)
 
   }
 
-  function newClient(){
+  async function deleteClient(client: Client) {
+
+    await repo.delete(client)
+    obterTodos()
+  }
+
+
+
+  function newClient() {
 
     setClient(Client.void())
     setVisivel('form')
 
   }
-  function saveClient(client: Client) {
+  async function saveClient(client: Client) {
 
-    console.log(client)
-    setVisivel('tabela')
-
+    await repo.save(client)
+    obterTodos()
   }
 
   return (
@@ -63,7 +76,9 @@ repo.AllUsers().then(setClients)
 
 
 
-            <Table clients={clients} clientSelect={clientSelect}></Table>
+            <Table clients={clients} clientSelect={clientSelect}
+              clientDelete={deleteClient}
+            />
           </>
 
         ) : (
