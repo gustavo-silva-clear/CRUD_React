@@ -4,7 +4,7 @@ import firebase from "../config";
 
 export default class CollectionClient implements ClientRepository {
 
-    converter = {
+    #converter = {
 
         toFirestore(client: Client) {
 
